@@ -13,7 +13,7 @@ export default ({
     //CRUD = CREATE READ UPDATE DELETE
 
     //'/v1/Foodtruck/add' ==> Create
-    api.post('/add', (req, res) => {
+    api.post('/add', authenticate, (req, res) => {
         let newfoodTruck = new Foodtruck();
         newfoodTruck.name = req.body.name;
         newfoodTruck.foodtype = req.body.foodtype;
@@ -31,7 +31,7 @@ export default ({
     });
 
     //'v1/Foodtruck/' ==> Read
-    api.get('/', (req, res) => {
+    api.get('/',(req, res) => {
 
         Foodtruck.find({}, (err, foodtruck) => {
             if (err) {
@@ -52,7 +52,7 @@ export default ({
     });
 
     //'v1/foodtruck/:id' => update
-    api.put('/:id', (req, res) => {
+    api.put('/:id', authenticate, (req, res) => {
         Foodtruck.findById(req.params.id, (err, foodtruck) => {
             if (err) {
                 res.send(err);
@@ -70,7 +70,7 @@ export default ({
     });
 
     //'v1/foodtruck/:id' => delete
-    api.delete('/:id', (req, res) => {
+    api.delete('/:id', authenticate, (req, res) => {
         Foodtruck.remove({
             _id: req.params.id
         }, (err, foodtruck) => {
@@ -85,7 +85,7 @@ export default ({
 
     //add review for specific foodtruck id
     //'/v1/foodtruck/reviews/add/:id'
-    api.post('/reviews/add/:id', (req, res) => {
+    api.post('/reviews/add/:id', authenticate, (req, res) => {
         Foodtruck.findById(req.params.id, (err, foodtruck) => {
             if (err) {
                 res.send(err);

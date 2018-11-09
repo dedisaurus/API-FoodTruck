@@ -1,0 +1,10 @@
+{
+	"name" : "Tahu foodtruck",
+	"foodtype" : "Tahu Bulat",
+	"avgcost" : 500,
+	"geometry":{"coordinates":[-6.881684,107.5790523,17]}
+	
+}
+
+
+Link === http://localhost:3005/v1/foodtruck/add
